@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.contador{
+
+  border: 1px solid #1E679A;
+  width: 280px;
+    background-color: #1E679A;
+    font-weight: bold;
+    color: #ffffff;
+    padding: 2 2 2 2px;
+
+  padding: 4 4 4 4px;
+  background-color: #ffffcc;
+}
