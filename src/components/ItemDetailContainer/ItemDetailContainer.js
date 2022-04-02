@@ -1,25 +1,39 @@
+import './ItemDetailContainer.css'
 import { useState, useEffect } from 'react'
 import { getProductById } from '../../asyncmock'
-import ItemDetail from "../ItemDetail/ItemDetail"
+import ItemDetail from '../ItemDetail/ItemDetail'
 import { useParams } from 'react-router-dom'
 
 const ItemDetailContainer = () => {
     const [product, setProduct] = useState()
+    const [loading, setLoading] = useState(true)
 
-    const { id } = useParams()
+    const { productId } = useParams()
 
     useEffect(() => {
-        getProductById(id).then(prod => {
+        setLoading(true)
+
+        getProductById(productId).then(prod => {
             setProduct(prod)
+        }).catch(error => {
+            console.log(error)
+        }).finally(() => {
+            setLoading(false)
         })
-    }, [id])
+
+    }, [productId])
+    
+
+    if(loading) {
+        return <h1>Cargando...</h1>
+    }
 
     return(
-        <div>
-            <ItemDetail {...product} />
+        <div className='ItemDetailContainer'>
+            <ItemDetail {...product}/>
+
         </div>
     )
-
 }
 
 export default ItemDetailContainer

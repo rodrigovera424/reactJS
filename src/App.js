@@ -17,10 +17,12 @@ function App() {
       <BrowserRouter>
         <NavBar />
         <Routes>
-          <Route path='/' element={<ItemListContainer />} />
+          <Route path='/' element={<ItemListContainer greeting={'Hola Coder'}/>}/>
           <Route path='/category/:categoryId' element={<ItemListContainer />} />
           <Route path='/item/:id' element={<ItemDetailContainer />} />
+          <Route path='/detail/:productId' element={<ItemDetailContainer />} />
           <Route path='*' element={<h1>404</h1>} />
+
         </Routes>
           <ItemCount className="contador" initial={1} stock={20} onAdd={onAdd}/>
           
