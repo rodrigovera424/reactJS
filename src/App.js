@@ -3,6 +3,7 @@ import NavBar from './components/NavBar/NavBar';
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
 import ItemCount from './components/ItemCount/ItemCount';
+import Footer from './components/Footer/Footer';
 
 
 
@@ -15,6 +16,7 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
+      
         <NavBar />
         <Routes>
           <Route path='/' element={<ItemListContainer greeting={'Hola Coder'}/>}/>
@@ -25,10 +27,13 @@ function App() {
 
         </Routes>
           <ItemCount className="contador" initial={1} stock={20} onAdd={onAdd}/>
+
           
       </BrowserRouter>
-      <p>2022 C</p>
+ 
+<Footer/>
     </div>
+    
   );
 }
 
