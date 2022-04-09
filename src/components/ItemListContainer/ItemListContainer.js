@@ -10,6 +10,10 @@ const ItemListContainer = () => {
 
     const { categoryId } = useParams()
 
+    const onResize = () => {
+        console.log('cambio el tamaño de la ventana')
+    }
+
     useEffect(() => {
         setLoading(true)
         
@@ -25,9 +29,17 @@ const ItemListContainer = () => {
             setProducts([])
         })          
     }, [categoryId])
+
+    useEffect(() => {
+        window.addEventListener('resize', onResize)
+
+        return (() => {
+            window.removeEventListener('resize', onResize)
+        })
+    }, [])
     
     return (
-        <div className="ItemListContainer">
+        <div className="ItemListContainer" onClick={() => console.log('Hice click en ItemListContainer')}>
             {
                 loading ? 
                     <h1>Cargando...</h1> :  
