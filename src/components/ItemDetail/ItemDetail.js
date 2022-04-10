@@ -1,31 +1,29 @@
-import { useState } from 'react'
+import { useState, useContext } from 'react' 
+import { Link } from 'react-router-dom'
 import ItemCount from '../ItemCount/ItemCount'
 import './ItemDetail.css'
+// import { CartContext } from '../../App'
+import CartContext from '../../context/CartContext'
 
-const InputText = ({ onAdd }) => {
-    const [value, setValue] = useState(0)
+const ItemDetail = ({ id, name, img, category, description, price, stock}) => {
+    const [quantity, setQuantity] = useState(0)
 
-    return(
-        <div>
-            <input type='number' onChange={(e) => setValue(e.target.value)}/>
-            <button onClick={onAdd}>Agregar al carrito</button>
-        </div>
-    )
-}
+    // const { cart, setCart } = useContext(CartContext)
+    // console.log(cart)
+    // console.log(setCart)
 
-const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
-    const [inputType, setInputType] = useState('text')
+    const { addItem } = useContext(CartContext)
 
-    const onAdd = () => {
+    const handleOnAdd = (count) => {
         console.log('agregue al carrito')
+        setQuantity(count)
+        // setCart([...cart, {id, name, price, count}])
+        addItem({ id, name, price}, count)
     }
-
-    const Count = inputType === 'text' ? InputText : ItemCount
         
 
     return (
         <article className="CardItem">
-            <button onClick={() => setInputType('button')}>Cambiar input</button>
             <header className="Header">
                 <h2 className="ItemHeader">
                     {name}
@@ -46,8 +44,8 @@ const ItemDetail = ({ id, name, img, category, description, price, stock }) => {
                 </p>
             </section>           
             <footer className='ItemFooter'>
-                {inputType === 'text' ? <InputText onAdd={onAdd}/> : <ItemCount onAdd={onAdd}/> }
-                <Count onAdd={onAdd} />
+                {quantity === 0 ? <ItemCount onAdd={handleOnAdd}/> : <Link to='/cart' className='Option'>Ir al carrito</Link>}
+                
             </footer>
         </article>
     )

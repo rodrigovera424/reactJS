@@ -37,7 +37,7 @@ li:hover~li p {
     display: flex;
     height: 15vh;
   
-    background-color: #002a38;
+    background-color: grey;
     line-height: 1.3;
     font-family: Menlo, monospace;
 }

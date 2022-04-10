@@ -8,7 +8,7 @@ const Item = ({ id, name, img, price}) => {
         console.log('Hice click en la imagen')
     }
 
-   return(
+    return(
         <article className='CardItem' onClick={() => console.log(`Hice click en el Item ${id}`)}>
             <header className='CardHeader'>
                 <h2 className='ItemHeader'>{name}</h2>
@@ -27,4 +27,3 @@ const Item = ({ id, name, img, price}) => {
 }
 
 export default Item
-
